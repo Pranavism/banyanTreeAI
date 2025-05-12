@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BanyanTree AI - Agentic AI Operating System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Gray-900 */
+            color: #d1d5db; /* Gray-300 for primary text */
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden; 
+        }
+        body::before {
+            content: "";
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3Cfilter id='blurFilter' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M480 950 V 600 Q 480 580 500 580 Q 520 580 520 600 V 950 Z' fill='%2305080f'/%3E%3Cellipse cx='500' cy='450' rx='350' ry='200' fill='%2305080f'/%3E%3Cellipse cx='500' cy='350' rx='300' ry='150' fill='%2305080f'/%3E%3Cellipse cx='500' cy='280' rx='250' ry='120' fill='%2305080f'/%3E%3Cpath d='M300 450 Q 320 600 330 750 L 340 750 Q 330 600 310 450 Z' fill='%2305080f'/%3E%3Cpath d='M700 450 Q 680 600 670 750 L 660 750 Q 670 600 690 450 Z' fill='%2305080f'/%3E%3Cpath d='M400 400 Q 410 550 420 700 L 430 700 Q 420 550 410 400 Z' fill='%2305080f'/%3E%3Cpath d='M600 400 Q 590 550 580 700 L 570 700 Q 580 550 590 400 Z' fill='%2305080f'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center bottom; 
+            background-size: cover; 
+            opacity: 0.1; 
+            z-index: -1; 
+            filter: blur(3px); 
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #10B981 0%, #4F46E5 70%, #3730A3 100%); 
+            color: #f0fdf4; 
+        }
+        .banyan-leaf-color {
+            color: #34d399; 
+        }
+        .section-title {
+            font-weight: 800;
+            color: #a5f3fc; 
+        }
+        .card-base { 
+            border-radius: 0.75rem; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%; 
+        }
+        .glassmorphism-card { 
+            background-color: rgba(31, 41, 55, 0.4); 
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .card-base:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+        .card-content {
+            flex-grow: 1; 
+        }
+        .cta-button {
+            background-color: #10B981; 
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+        }
+        .cta-button:hover {
+            background-color: #059669; 
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(16, 185, 129, 0.4);
+        }
+        nav {
+            background-color: rgba(17, 24, 39, 0.85); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        nav a, #mobile-menu-button {
+            color: #e5e7eb; 
+        }
+        nav a:hover, #mobile-menu-button:hover {
+            color: #34d399; 
+        }
+        #mobile-menu {
+            display: none;
+            background-color: rgba(31, 41, 55, 0.98); 
+            backdrop-filter: blur(10px);
+        }
+        .hero-svg-overlay { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0; 
+            opacity: 0.15; 
+        }
+        .blog-card img {
+            height: 200px; 
+            object-fit: cover; 
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        .animation-placeholder {
+            background-color: rgba(17, 24, 39, 0.5); /* Darker, more integrated placeholder */
+            border: 1px solid rgba(52, 211, 153, 0.3); /* Subtler border */
+            border-radius: 0.75rem;
+            padding: 2rem;
+            min-height: 350px; /* Adjusted height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(16,185,129,0.15), inset 0 0 15px rgba(16,185,129,0.1);
+            position: relative; /* For content positioning */
+            overflow: hidden; /* To contain transitions */
+        }
+        .concept-content {
+            transition: opacity 0.7s ease-in-out;
+            width: 100%;
+        }
+        .concept-content.fade-out {
+            opacity: 0;
+        }
+        .concept-content.fade-in {
+            opacity: 1;
+        }
+        .animation-placeholder .icon {
+            font-size: 2.5rem; /* Slightly smaller icon */
+            color: #34d399;
+            margin-bottom: 0.75rem;
+        }
+         .animation-placeholder h3 {
+            font-size: 1.75rem; /* Adjusted title size */
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e5e7eb; /* Lighter title for dark bg */
+        }
+        .animation-placeholder .tagline {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #6ee7b7; /* Brighter green for tagline */
+            margin-bottom: 1rem;
+        }
+        .animation-placeholder .description-preview {
+            font-size: 0.875rem;
+            color: #9ca3af; /* Lighter gray for description */
+            max-width: 90%;
+            margin: 0 auto 1rem auto;
+            line-height: 1.6;
+        }
+        .animation-placeholder .no-code-emphasis {
+            font-size: 0.8rem;
+            color: #34d399;
+            background-color: rgba(52, 211, 153, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .dev-hub-card-icon {
+            color: #34d399; 
+        }
+    </style>
+</head>
+<body class="leading-normal tracking-normal">
+
+    <nav class="fixed w-full z-20 top-0">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold hover:opacity-80">
+                <i class="fas fa-leaf mr-2 banyan-leaf-color"></i>BanyanTree AI
+            </a>
+            <div id="desktop-menu" class="hidden md:flex space-x-4 items-center">
+                <a href="#vision" class="px-3 py-2 rounded-md text-sm font-medium">Our Vision</a>
+                <a href="#features" class="px-3 py-2 rounded-md text-sm font-medium">Features</a>
+                <a href="#orchestration" class="px-3 py-2 rounded-md text-sm font-medium">Orchestration</a>
+                <a href="#future" class="px-3 py-2 rounded-md text-sm font-medium">Agentic Frontier</a>
+                <a href="#developers" class="px-3 py-2 rounded-md text-sm font-medium">Developers</a>
+                <a href="#blog" class="px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                <a href="#why-us" class="px-3 py-2 rounded-md text-sm font-medium">Why Us?</a>
+                <a href="#contact" class="cta-button text-white px-4 py-2 rounded-md text-sm font-medium">Get Early Access</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden absolute w-full shadow-lg py-2">
+            <a href="#vision" class="block hover:bg-gray-700 px-4 py-2 text-sm">Our Vision</a>
+            <a href="#features" class="block hover:bg-gray-700 px-4 py-2 text-sm">Features</a>
+            <a href="#orchestration" class="block hover:bg-gray-700 px-4 py-2 text-sm">Orchestration</a>
+            <a href="#future" class="block hover:bg-gray-700 px-4 py-2 text-sm">Agentic Frontier</a>
+            <a href="#developers" class="block hover:bg-gray-700 px-4 py-2 text-sm">Developers</a>
+            <a href="#blog" class="block hover:bg-gray-700 px-4 py-2 text-sm">Blog</a>
+            <a href="#why-us" class="block hover:bg-gray-700 px-4 py-2 text-sm">Why Us?</a>
+            <a href="#contact" class="block cta-button text-white px-4 py-3 text-sm font-medium text-center mx-2 my-2 rounded-md">Get Early Access</a>
+        </div>
+    </nav>
+
+    <header class="hero-bg pt-32 pb-24 relative overflow-hidden">
+        <div class="hero-svg-overlay">
+            <svg width="100%" height="100%" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M-200 300 Q-100 200 0 300 T200 300 T400 300 T600 300 T800 300 T1000 300 T1200 300 T1400 300 T1600 300 T1800 300" stroke="rgba(255,255,255,0.1)" stroke-width="120" fill="none" stroke-linecap="round"/>
+                <path d="M-200 400 Q-50 300 100 400 T350 400 T600 400 T850 400 T1100 400 T1350 400 T1600 400 T1850 400" stroke="rgba(255,255,255,0.07)" stroke-width="100" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight">
+                Agentic AI <span class="block">Operating System</span>
+            </h2>
+            <p class="text-lg lg:text-xl mb-8 max-w-3xl mx-auto">
+                BanyanTree AI: The No-Code Platform for designing, deploying, and managing the next generation of intelligent, interconnected agentic systems.
+            </p>
+            <div id="orchestration-animation-placeholder" class="animation-placeholder max-w-3xl mx-auto mb-10">
+                <div id="dynamic-concept-content" class="concept-content">
+                    <div class="icon"><i class="fas fa-spinner fa-spin"></i></div>
+                    <h3 class="text-2xl font-semibold mb-3 text-green-300">Loading Orchestration Concepts...</h3>
+                </div>
+            </div>
+            <a href="#contact" class="cta-button font-bold py-4 px-10 rounded-lg text-lg shadow-xl">
+                Unlock Agentic Power
+            </a>
+        </div>
+    </header>
+
+    <div class="relative z-10">
+        <main class="container mx-auto px-6 py-16 space-y-24">
+
+            <section id="vision" class="text-center">
+                <i class="fas fa-seedling fa-3x banyan-leaf-color mb-6"></i>
+                <h2 class="text-3xl lg:text-4xl font-bold section-title mb-6">Our Vision: The AI-Native Future</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    At BanyanTree AI, we see a future where intelligent agents seamlessly collaborate to solve humanity's grand challenges. Our no-code platform is the seed, enabling anyone to cultivate vast, interconnected agent ecosystems—as resilient and adaptive as a banyan tree—to drive unprecedented innovation.
+                </p>
+            </section>
+
+            <section id="features">
+                <h2 class="text-3xl lg:text-4xl font-bold section-title mb-12 text-center">Core Platform Pillars</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-base glassmorphism-card p-6 text-center">
+                        <div class="card-content">
+                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-magic"></i></div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Intuitive No-Code Builder</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Visually design agent behaviors, tools, and intricate AI orchestration logic with our drag-and-drop canvas. Zero coding required.</p>
+                        </div>
+                    </div>
+                    <div class="card-base glassmorphism-card p-6 text-center">
+                         <div class="card-content">
+                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-sitemap"></i></div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Agent & Tool Ecosystem</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">A rich registry to discover, manage, and reuse AI agents and their capabilities. Define tools via APIs, scripts, or other agents.</p>
+                        </div>
+                    </div>
+                    <div class="card-base glassmorphism-card p-6 text-center">
+                        <div class="card-content">
+                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-puzzle-piece"></i></div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Modular & Extensible AI</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Easily integrate existing services (APIs, LLMs) or define new agent capabilities to extend the platform's power and adapt to any AI challenge.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="orchestration" class="bg-gray-800 bg-opacity-50 py-16 rounded-lg backdrop-blur-md border border-gray-700">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl lg:text-4xl font-bold section-title mb-12 text-center">AI Orchestration Engines</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-project-diagram"></i></div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Declarative AI Workflows</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Visually define complex, stateful AI agent interactions and conditional logic. Ideal for structured processes and intelligent decision trees.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-robot"></i></div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">ReAct with AI Agent Teams</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Empower an LLM planner to reason and act by dynamically selecting AI agents and tools from predefined teams to achieve complex goals.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-atom"></i></div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Quantum-Inspired Entanglement</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Model intricate, conditional dependencies between AI agents. An agent's state "collapse" can trigger a cascade of observations in "entangled" agents.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-bolt"></i></div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Event-Driven AI Architecture</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Build AI agents that react intelligently to real-time events from Kafka or other sources, enabling dynamic and responsive automation.</p>
+                            </div>
+                        </div>
+                         <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-cogs"></i></div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Dynamic AI Tool Execution</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Invoke any registered AI agent's specific tool directly via a generic API endpoint, providing flexibility for targeted actions.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-comments"></i></div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Stateful AI Chat Agents</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Easily create and deploy conversational AI agents that maintain context and history, powered by LLMs and your agent ecosystem.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="future" class="py-16">
+                <div class="container mx-auto px-6 text-center">
+                    <i class="fas fa-rocket fa-3x banyan-leaf-color mb-6"></i>
+                    <h2 class="text-3xl lg:text-4xl font-bold section-title mb-6">Ride the Next Wave of Agentic Frontier</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
+                        BanyanTree AI is more than a platform; it's the foundational <strong class="text-green-400">Operating System for Agentic AI</strong>. We empower you to build, manage, and scale the next generation of intelligent, autonomous systems.
+                    </p>
+                    <p class="text-md text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+                        We're actively exploring and integrating these cutting-edge capabilities to define what's possible:
+                    </p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl text-green-400 mb-5"><i class="fas fa-sync-alt"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Self-Improving AI Agents</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Envision agents that learn from every interaction, automatically refining their strategies and tool usage to become more effective over time.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl text-green-400 mb-5"><i class="fas fa-globe-americas"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Decentralized Agent Networks</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Explore robust architectures for autonomous, collaborative AI agent ecosystems, potentially using DLT for enhanced trust and coordination.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl text-green-400 mb-5"><i class="fas fa-shield-alt"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Ethical AI Governance</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Integrate tools for defining, monitoring, and enforcing ethical guidelines and operational boundaries within your AI agent systems.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl text-green-400 mb-5"><i class="fas fa-hands-helping"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Advanced Human-AI Loop</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Develop sophisticated interfaces for seamless human-agent collaboration, expert oversight, and intuitive intervention in complex AI orchestrations.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl text-green-400 mb-5"><i class="fas fa-chart-line"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Predictive AI Orchestration</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Enable AI agents that learn to anticipate future needs, proactively configuring or triggering orchestrations to optimize outcomes or prevent issues.</p>
+                            </div>
+                        </div>
+                         <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl text-green-400 mb-5"><i class="fas fa-brain"></i></div> 
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Cognitive Architectures</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Provide tools to design AI agents and orchestrations that emulate more complex cognitive architectures, enabling richer reasoning and learning.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="developers" class="py-16">
+                <div class="container mx-auto px-6 text-center">
+                    <i class="fas fa-laptop-code fa-3x banyan-leaf-color mb-6"></i>
+                    <h2 class="text-3xl lg:text-4xl font-bold section-title mb-6">Developer Hub: Build & Extend with AI</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+                        BanyanTree AI is built for extensibility. Access comprehensive resources to integrate, customize, and scale your AI agent solutions.
+                    </p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl dev-hub-card-icon mb-5"><i class="fas fa-book-open"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">API Documentation</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Detailed references for all platform APIs, enabling seamless integration with your existing systems.</p>
+                                <a href="#" class="mt-4 inline-block text-green-400 hover:text-green-300 font-medium">Explore Docs &rarr;</a>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl dev-hub-card-icon mb-5"><i class="fas fa-cubes"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">SDKs & Libraries</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Client libraries in popular languages to accelerate your development and interaction with BanyanTree AI.</p>
+                                <a href="#" class="mt-4 inline-block text-green-400 hover:text-green-300 font-medium">Get SDKs &rarr;</a>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl dev-hub-card-icon mb-5"><i class="fas fa-graduation-cap"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Tutorials & Use Cases</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Step-by-step guides and real-world examples to help you master agent building and orchestration.</p>
+                                <a href="#" class="mt-4 inline-block text-green-400 hover:text-green-300 font-medium">Learn More &rarr;</a>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6 text-center">
+                            <div class="card-content">
+                                <div class="text-5xl dev-hub-card-icon mb-5"><i class="fas fa-users-cog"></i></div>
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Community & Support</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Connect with other developers, share insights, and get support through our forums and channels.</p>
+                                <a href="#" class="mt-4 inline-block text-green-400 hover:text-green-300 font-medium">Join Community &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blog" class="bg-gray-800 bg-opacity-50 py-16 rounded-lg backdrop-blur-md border border-gray-700">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl lg:text-4xl font-bold section-title mb-12 text-center">
+                        <i class="fas fa-feather-alt mr-2 banyan-leaf-color"></i>From Our Roots: AI Insights & Ideas
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="card-base glassmorphism-card overflow-hidden">
+                            <img src="https://placehold.co/600x400/1f2937/34d399?text=No-Code+AI" alt="Abstract representation of interconnected agent nodes" class="w-full">
+                            <div class="p-6 card-content">
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">The Power of No-Code AI Agent Orchestration</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">Discover how visual tools are democratizing the creation of complex AI agent systems, enabling faster innovation for businesses of all sizes.</p>
+                                <a href="#" class="font-medium text-green-400 hover:text-green-300">Read More &rarr;</a>
+                            </div>
+                            <div class="px-6 pb-4 border-t border-gray-700 mt-auto">
+                                <p class="text-xs text-gray-500">By BanyanTree AI Team - May 10, 2025</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card overflow-hidden">
+                            <img src="https://placehold.co/600x400/1f2937/34d399?text=Event-Driven+Agents" alt="Flowchart showing events triggering AI agent actions" class="w-full">
+                            <div class="p-6 card-content">
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">Event-Driven AI: Building Responsive Agents</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">Dive into how event-driven patterns allow AI agents to react intelligently and adapt to real-time changes, leading to more dynamic systems.</p>
+                                <a href="#" class="font-medium text-green-400 hover:text-green-300">Read More &rarr;</a>
+                            </div>
+                             <div class="px-6 pb-4 border-t border-gray-700 mt-auto">
+                                <p class="text-xs text-gray-500">By Dr. Agent Smith - May 05, 2025</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card overflow-hidden">
+                            <img src="https://placehold.co/600x400/1f2937/34d399?text=Agentic+Future" alt="Futuristic image representing interconnected AI brains" class="w-full">
+                            <div class="p-6 card-content">
+                                <h3 class="text-xl font-semibold mb-3 text-gray-100">The Agentic Future: Beyond Current AI</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">Exploring concepts like self-improving systems, decentralized networks, and ethical governance in the evolving world of AI agents.</p>
+                                <a href="#" class="font-medium text-green-400 hover:text-green-300">Read More &rarr;</a>
+                            </div>
+                             <div class="px-6 pb-4 border-t border-gray-700 mt-auto">
+                                <p class="text-xs text-gray-500">By The Futurist - April 28, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12">
+                        <a href="#" class="cta-button font-bold py-3 px-8 rounded-lg text-lg shadow-md">
+                            Visit Our AI Blog
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="why-us" class="py-16"> 
+                <div class="container mx-auto px-6 text-center">
+                    <i class="fas fa-tree fa-3x banyan-leaf-color mb-6"></i>
+                    <h2 class="text-3xl lg:text-4xl font-bold section-title mb-6">Why BanyanTree AI?</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+                        Traditional AI development is complex. BanyanTree AI simplifies this, empowering you to build the future of AI, today:
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-8 text-left">
+                        <div class="card-base glassmorphism-card p-8">
+                            <h3 class="text-xl font-semibold text-green-400 mb-3"><i class="fas fa-rocket mr-2"></i>Innovate Faster with AI</h3>
+                            <p class="text-gray-400 text-sm">Rapidly prototype and deploy sophisticated AI agent solutions without boilerplate code or steep learning curves.</p>
+                        </div>
+                        <div class="card-base glassmorphism-card p-8">
+                            <h3 class="text-xl font-semibold text-green-400 mb-3"><i class="fas fa-brain mr-2"></i>Unlock Agentic Power</h3>
+                            <p class="text-gray-400 text-sm">Explore advanced AI orchestration patterns previously too complex to implement, opening doors to novel AI applications.</p>
+                        </div>
+                        <div class="card-base glassmorphism-card p-8">
+                            <h3 class="text-xl font-semibold text-green-400 mb-3"><i class="fas fa-users mr-2"></i>Empower Your Team</h3>
+                            <p class="text-gray-400 text-sm">Enable both technical and non-technical users to contribute to AI development, fostering collaboration and innovation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="text-center py-20 bg-gray-800 bg-opacity-50 rounded-lg backdrop-blur-md border border-gray-700"> 
+                <h2 class="text-3xl lg:text-4xl font-bold section-title mb-6">Grow Your AI Ecosystem with BanyanTree AI</h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Be among the first to experience the future of AI agent building. Join our waitlist for early access and exclusive updates.
+                </p>
+                <form class="max-w-lg mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Enter your email" class="flex-grow px-4 py-3 rounded-md border border-gray-600 bg-gray-700 text-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-sm placeholder-gray-500" required>
+                        <button type="submit" class="cta-button font-bold py-3 px-8 rounded-lg text-lg shadow-md">
+                            Join the AI Revolution
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-4">We respect your privacy. No spam, ever.</p>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 relative z-10 border-t border-gray-700"> 
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <a href="#" class="text-xl font-bold text-green-500 hover:text-green-400">
+                    <i class="fas fa-leaf mr-2"></i>BanyanTree AI
+                </a>
+            </div>
+            <div class="text-sm space-x-6 mb-4">
+                <a href="#" class="hover:text-green-400">Privacy Policy</a>
+                <a href="#" class="hover:text-green-400">Terms of Service</a>
+            </div>
+            <p class="text-xs">&copy; <span id="currentYear"></span> BanyanTree AI. All rights reserved. Cultivating the Future of Intelligent AI Orchestration.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Orchestration Concepts Data (from orchestration_concepts_json_v1) ---
+        const orchestrationConcepts = [
+          {
+            "id": "quantumEntanglement",
+            "title": "Quantum-Inspired Entanglement",
+            "tagline": "Interlinked Agents, Cascading Intelligence.",
+            "description": "Model intricate, conditional dependencies where an agent's state 'collapse' triggers a cascade of observations and actions in 'entangled' agents, enabling highly adaptive and responsive systems.",
+            "flow": {
+              "type": "quantumEntanglement",
+              "trigger": "State change in an observed agent or critical external event.",
+              "keyConcepts": ["Observation", "State Collapse", "Visual Entanglement Mapping", "Cascading Effects"],
+              "agentsInvolved": [
+                {"name": "SensorAgent", "role": "Monitors specific conditions or data streams."},
+                {"name": "DecisionAgent", "role": "Changes state based on SensorAgent's input."},
+                {"name": "ReactiveAgent", "role": "Activated based on DecisionAgent's state via entanglement rules."},
+                {"name": "ActionAgent", "role": "Performs tasks triggered by ReactiveAgents."}
+              ],
+              "simplifiedSteps": [
+                "SensorAgent detects a market shift.",
+                "DecisionAgent's state collapses to 'HighVolatility'.",
+                "Entanglement map (visually defined by user) triggers ReactiveAgent (e.g., 'RiskAssessorAgent').",
+                "RiskAssessorAgent observes further, potentially triggering an ActionAgent (e.g., 'PortfolioAdjusterAgent')."
+              ],
+              "noCodeEmphasis": "Visually define entanglement maps, agent states, and trigger conditions on the no-code canvas. No complex physics, just powerful conditional logic."
+            },
+            "icon": "fas fa-atom"
+          },
+          {
+            "id": "reactWithTeams",
+            "title": "ReAct Orchestration with AI Agent Teams",
+            "tagline": "Reason, Act, Achieve. Collaboratively.",
+            "description": "Empower a central LLM planner to reason about a goal, select appropriate AI agents from specialized teams, delegate tasks (actions), and iterate based on observations until the goal is achieved.",
+            "flow": {
+              "type": "reactLoop",
+              "trigger": "User-defined complex goal or query.",
+              "keyConcepts": ["Goal Decomposition", "LLM Planning", "Tool Selection", "Team Collaboration", "Iterative Refinement"],
+              "agentsInvolved": [
+                {"name": "PlannerAgent (LLM)", "role": "Reasons, plans next action, selects agent/tool."},
+                {"name": "ToolExpertAgent_A", "role": "Specialized in a specific domain (e.g., Data Analysis)."},
+                {"name": "ToolExpertAgent_B", "role": "Specialized in another domain (e.g., Communication)."},
+                {"name": "KnowledgeBrokerAgent", "role": "Provides access to specific knowledge bases."}
+              ],
+              "simplifiedSteps": [
+                "User Goal: 'Summarize recent sales data and email report to management.'",
+                "PlannerAgent: Thinks -> 'Need to fetch sales data first.' Selects DataAnalysisAgent.",
+                "Action: DataAnalysisAgent's 'fetch_sales_data' tool is invoked.",
+                "Observation: Sales data is returned.",
+                "PlannerAgent: Thinks -> 'Now summarize.' Selects an LLM-based SummarizerAgent.",
+                "Action: SummarizerAgent's 'summarize_text' tool is invoked with sales data.",
+                "Observation: Summary is returned.",
+                "PlannerAgent: Thinks -> 'Now email.' Selects CommunicationAgent.",
+                "Action: CommunicationAgent's 'send_email' tool is invoked with summary and recipient list.",
+                "Observation: Email sent successfully. Goal achieved."
+              ],
+              "noCodeEmphasis": "Drag-and-drop to assemble agent teams. Configure the PlannerAgent's access to agents and tools visually. Define goals in natural language."
+            },
+            "icon": "fas fa-robot"
+          },
+          {
+            "id": "complexSystemSimulation",
+            "title": "Complex System Simulation",
+            "tagline": "Model the Unpredictable. Visually.",
+            "description": "Simulate and observe the emergent behaviors of multiple interacting agents or entities, inspired by complex systems like the n-body problem in physics. Understand system dynamics through no-code configuration.",
+            "flow": {
+              "type": "multiAgentSimulation",
+              "trigger": "User-defined simulation parameters and initial conditions.",
+              "keyConcepts": ["Agent-Based Modeling", "Emergent Behavior", "Parameter Tuning", "Visualization"],
+              "agentsInvolved": [
+                {"name": "EntityAgent", "role": "Represents an individual actor/body with defined rules of interaction."},
+                {"name": "EnvironmentAgent", "role": "Manages the simulation space and global rules."},
+                {"name": "ObserverAgent", "role": "Tracks and reports on the state of EntityAgents and the system."}
+              ],
+              "simplifiedSteps": [
+                "User defines 'CelestialBodyAgents' with initial positions/velocities (no-code).",
+                "User sets gravitational interaction rules via EnvironmentAgent's configuration.",
+                "Simulation starts: Agents update state based on forces from others.",
+                "ObserverAgent tracks trajectories. Visualization shows complex paths."
+              ],
+              "noCodeEmphasis": "Visually configure agent properties, interaction rules, and simulation parameters. Observe emergent dynamics without coding physics engines."
+            },
+            "icon": "fas fa-project-diagram" 
+          },
+          {
+            "id": "maxwellsDemon",
+            "title": "Maxwell's Demon Orchestration",
+            "tagline": "Intelligent Information Valves for Agents.",
+            "description": "Create sophisticated information flow control between agents, where a 'gatekeeper' agent (the Demon) selectively allows or blocks information/tasks based on complex criteria, optimizing system efficiency or achieving specific states.",
+            "flow": {
+              "type": "informationGating",
+              "trigger": "Continuous stream of data/tasks or specific events.",
+              "keyConcepts": ["Information Filtering", "Conditional Routing", "State-Based Control", "System Optimization"],
+              "agentsInvolved": [
+                {"name": "SourceAgent", "role": "Generates data or tasks."},
+                {"name": "DemonAgent (Gatekeeper)", "role": "Observes incoming data/tasks and decides routing."},
+                {"name": "TargetAgent_HighPriority", "role": "Processes high-priority/filtered data."},
+                {"name": "TargetAgent_LowPriority", "role": "Processes other data or acts as a sink."}
+              ],
+              "simplifiedSteps": [
+                "SourceAgent produces a stream of 'data packets'.",
+                "DemonAgent (no-code rules) inspects packet 'temperature' (priority/type).",
+                "If 'temperature' is high, routes to TargetAgent_HighPriority.",
+                "Else, routes to TargetAgent_LowPriority or discards."
+              ],
+              "noCodeEmphasis": "Visually define the DemonAgent's filtering and routing logic. Connect Source and Target agents via the Demon on the canvas."
+            },
+            "icon": "fas fa-door-closed" 
+          },
+          {
+            "id": "declarativeWorkflows",
+            "title": "Declarative AI Workflows",
+            "tagline": "Build Stateful Processes. Visually.",
+            "description": "Design and execute complex, stateful processes where agents perform tasks in a sequence or based on conditional logic, inspired by LangGraph. Define the 'what', let BanyanTree AI handle the 'how'.",
+            "flow": {
+                "type": "graphWorkflow",
+                "trigger": "API call, Kafka message, or another agent's action.",
+                "keyConcepts": ["State Management", "Conditional Edges", "Agent Nodes", "Visual Graph Definition"],
+                "agentsInvolved": [
+                    {"name": "DataIngestionAgent", "role": "Collects initial data."},
+                    {"name": "ProcessingAgent", "role": "Transforms or analyzes data."},
+                    {"name": "DecisionAgent", "role": "Makes a choice based on processed data."},
+                    {"name": "NotificationAgent", "role": "Communicates results."}
+                ],
+                "simplifiedSteps": [
+                    "Workflow starts with DataIngestionAgent.",
+                    "Output flows to ProcessingAgent.",
+                    "DecisionAgent evaluates ProcessingAgent's output.",
+                    "Conditional routing to different NotificationAgents."
+                ],
+                "noCodeEmphasis": "Drag-and-drop agent nodes, define connections and conditional logic visually. Monitor workflow state in real-time."
+            },
+            "icon": "fas fa-stream"
+          },
+          {
+            "id": "eventDrivenArchitecture",
+            "title": "Event-Driven Agent Architecture",
+            "tagline": "React Intelligently. In Real-Time.",
+            "description": "Construct systems where agents are triggered by real-time events (e.g., from Kafka, IoT devices, user actions). Events are filtered, mapped, and dispatched by the platform's Event Router.",
+            "flow": {
+                "type": "eventDriven",
+                "trigger": "External events (Kafka messages, API calls, sensor data).",
+                "keyConcepts": ["Event Consumption", "Event Filtering", "Payload Mapping", "Asynchronous Processing"],
+                "agentsInvolved": [
+                    {"name": "EventRouter (Platform)", "role": "Listens, filters, and routes events."},
+                    {"name": "SpecializedEventHandlerAgent_A", "role": "Handles specific event types."},
+                    {"name": "SpecializedEventHandlerAgent_B", "role": "Handles other event types."}
+                ],
+                "simplifiedSteps": [
+                    "Kafka message arrives on 'user_activity_topic'.",
+                    "EventRouter consumes and filters message.",
+                    "Rule routes to SecurityAlertAgent or OrderFulfillmentAgent based on 'activity_type'."
+                ],
+                "noCodeEmphasis": "Visually configure event sources, filtering rules, and data mappings to agent inputs. Define agent responses to specific events."
+            },
+            "icon": "fas fa-bolt"
+          }
+        ];
+
+        // --- Mobile Menu Toggle Script ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.style.display === 'none' || mobileMenu.style.display === '';
+                mobileMenu.style.display = isHidden ? 'block' : 'none';
+                menuButton.classList.toggle('active', isHidden);
+            });
+            document.addEventListener('click', (event) => {
+                if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target) && mobileMenu.style.display === 'block') {
+                    mobileMenu.style.display = 'none';
+                    menuButton.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu.style.display === 'block') {
+                        mobileMenu.style.display = 'none';
+                        menuButton.classList.remove('active');
+                    }
+                });
+            });
+        }
+        
+        // --- Set Current Year in Footer ---
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Smooth Scroll for Navigation Links ---
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') { 
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    if (mobileMenu && mobileMenu.style.display === 'block') {
+                        mobileMenu.style.display = 'none';
+                        if(menuButton) menuButton.classList.remove('active');
+                    }
+                    return;
+                }
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('nav').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    if (mobileMenu && mobileMenu.style.display === 'block') {
+                        mobileMenu.style.display = 'none';
+                        if(menuButton) menuButton.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // --- Dynamic Orchestration Concept Display in Hero ---
+        const conceptPlaceholder = document.getElementById('orchestration-animation-placeholder');
+        const dynamicContentDiv = document.getElementById('dynamic-concept-content');
+        let currentConceptIndex = 0;
+
+        function updateConceptDisplay() {
+            if (!orchestrationConcepts.length || !dynamicContentDiv) return;
+
+            const concept = orchestrationConcepts[currentConceptIndex];
+            
+            // Add fade-out class, then update content after a short delay, then fade-in
+            dynamicContentDiv.classList.add('fade-out');
+
+            setTimeout(() => {
+                let keyConceptsHTML = '';
+                if (concept.flow && concept.flow.keyConcepts && concept.flow.keyConcepts.length > 0) {
+                    keyConceptsHTML = `<ul class="text-xs text-gray-400 list-disc list-inside mb-2 text-left max-w-md mx-auto">`;
+                    concept.flow.keyConcepts.slice(0, 3).forEach(kc => { // Show max 3 key concepts
+                        keyConceptsHTML += `<li>${kc}</li>`;
+                    });
+                    keyConceptsHTML += `</ul>`;
+                } else if (concept.flow && concept.flow.simplifiedSteps && concept.flow.simplifiedSteps.length > 0) {
+                     keyConceptsHTML = `<ul class="text-xs text-gray-400 list-disc list-inside mb-2 text-left max-w-md mx-auto">`;
+                    concept.flow.simplifiedSteps.slice(0, 2).forEach(step => { // Show max 2 simplified steps
+                        keyConceptsHTML += `<li>${step}</li>`;
+                    });
+                    keyConceptsHTML += `</ul>`;
+                }
+
+
+                dynamicContentDiv.innerHTML = `
+                    <div class="icon"><i class="${concept.icon}"></i></div>
+                    <h3>${concept.title}</h3>
+                    <p class="tagline">${concept.tagline}</p>
+                    <p class="description-preview">${concept.description.substring(0, 120)}...</p>
+                    ${keyConceptsHTML}
+                    <p class="no-code-emphasis">${concept.flow.noCodeEmphasis}</p>
+                `;
+                dynamicContentDiv.classList.remove('fade-out');
+                dynamicContentDiv.classList.add('fade-in');
+            }, 700); // Corresponds to transition duration
+
+            currentConceptIndex = (currentConceptIndex + 1) % orchestrationConcepts.length;
+        }
+
+        if (dynamicContentDiv) {
+            // Initial display
+            dynamicContentDiv.classList.add('fade-in'); // Start with fade-in for the first item
+            updateConceptDisplay(); 
+            // Cycle through concepts every 7 seconds (adjust as needed)
+            setInterval(updateConceptDisplay, 7000); 
+        }
+
+    </script>
+
+</body>
+</html>
