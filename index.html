@@ -107,19 +107,19 @@
             border-top-right-radius: 0.75rem;
         }
         .animation-placeholder {
-            background-color: rgba(17, 24, 39, 0.5); /* Darker, more integrated placeholder */
-            border: 1px solid rgba(52, 211, 153, 0.3); /* Subtler border */
+            background-color: rgba(17, 24, 39, 0.5); 
+            border: 1px solid rgba(52, 211, 153, 0.3); 
             border-radius: 0.75rem;
             padding: 2rem;
-            min-height: 350px; /* Adjusted height */
+            min-height: 350px; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(16,185,129,0.15), inset 0 0 15px rgba(16,185,129,0.1);
-            position: relative; /* For content positioning */
-            overflow: hidden; /* To contain transitions */
+            position: relative; 
+            overflow: hidden; 
         }
         .concept-content {
             transition: opacity 0.7s ease-in-out;
@@ -132,25 +132,25 @@
             opacity: 1;
         }
         .animation-placeholder .icon {
-            font-size: 2.5rem; /* Slightly smaller icon */
+            font-size: 2.5rem; 
             color: #34d399;
             margin-bottom: 0.75rem;
         }
          .animation-placeholder h3 {
-            font-size: 1.75rem; /* Adjusted title size */
+            font-size: 1.75rem; 
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: #e5e7eb; /* Lighter title for dark bg */
+            color: #e5e7eb; 
         }
         .animation-placeholder .tagline {
             font-size: 1rem;
             font-weight: 500;
-            color: #6ee7b7; /* Brighter green for tagline */
+            color: #6ee7b7; 
             margin-bottom: 1rem;
         }
         .animation-placeholder .description-preview {
             font-size: 0.875rem;
-            color: #9ca3af; /* Lighter gray for description */
+            color: #9ca3af; 
             max-width: 90%;
             margin: 0 auto 1rem auto;
             line-height: 1.6;
@@ -167,6 +167,13 @@
 
         .dev-hub-card-icon {
             color: #34d399; 
+        }
+        .card-tagline { /* Style for taglines in cards */
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #6ee7b7; /* Brighter green for taglines */
+            margin-top: -0.25rem;
+            margin-bottom: 0.75rem;
         }
     </style>
 </head>
@@ -255,15 +262,36 @@
                     <div class="card-base glassmorphism-card p-6 text-center">
                          <div class="card-content">
                             <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-sitemap"></i></div>
-                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Agent & Tool Ecosystem</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">A rich registry to discover, manage, and reuse AI agents and their capabilities. Define tools via APIs, scripts, or other agents.</p>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Agent Registry & Discovery</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Centralized registry for managing agents and their capabilities. Enables universal discoverability for seamless inter-agent communication.</p>
                         </div>
                     </div>
                     <div class="card-base glassmorphism-card p-6 text-center">
                         <div class="card-content">
+                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-link"></i></div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">A2A Communication Protocol</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Standardized Agent-to-Agent (A2A) protocol ensures reliable and structured communication across your entire agent ecosystem.</p>
+                        </div>
+                    </div>
+                     <div class="card-base glassmorphism-card p-6 text-center">
+                        <div class="card-content">
                             <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-puzzle-piece"></i></div>
                             <h3 class="text-xl font-semibold mb-3 text-gray-100">Modular & Extensible AI</h3>
                             <p class="text-gray-400 text-sm leading-relaxed">Easily integrate existing services (APIs, LLMs) or define new agent capabilities to extend the platform's power and adapt to any AI challenge.</p>
+                        </div>
+                    </div>
+                     <div class="card-base glassmorphism-card p-6 text-center">
+                        <div class="card-content">
+                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-shield-alt"></i></div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Secure & Scalable</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Built with security and scalability at its core, ensuring your agentic systems are robust, reliable, and ready for enterprise demands.</p>
+                        </div>
+                    </div>
+                     <div class="card-base glassmorphism-card p-6 text-center">
+                        <div class="card-content">
+                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-tachometer-alt"></i></div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Monitoring & Analytics</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Gain insights into your agent operations with built-in monitoring, logging, and analytics tools to optimize performance and behavior.</p>
                         </div>
                     </div>
                 </div>
@@ -291,7 +319,23 @@
                             <div class="card-content">
                                 <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-atom"></i></div>
                                 <h3 class="text-xl font-semibold mb-2 text-gray-100">Quantum-Inspired Entanglement</h3>
+                                <p class="card-tagline">"Spooky Action at a Distance"</p>
                                 <p class="text-gray-400 text-sm leading-relaxed">Model intricate, conditional dependencies between AI agents. An agent's state "collapse" can trigger a cascade of observations in "entangled" agents.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-shapes"></i></div> <h3 class="text-xl font-semibold mb-2 text-gray-100">Three Body Problem Orchestrator</h3>
+                                <p class="card-tagline">"Chaos-Aware Modelling"</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Design and simulate agent interactions inspired by n-body physics, allowing for the exploration of emergent behaviors in complex, dynamic systems.</p>
+                            </div>
+                        </div>
+                        <div class="card-base glassmorphism-card p-6">
+                            <div class="card-content">
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-door-closed"></i></div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Maxwell's Demon Orchestration</h3>
+                                 <p class="card-tagline">"Intelligent Information Valves"</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Implement sophisticated information flow control where 'gatekeeper' agents selectively manage data or task routing based on complex criteria.</p>
                             </div>
                         </div>
                         <div class="card-base glassmorphism-card p-6">
@@ -299,20 +343,6 @@
                                 <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-bolt"></i></div>
                                 <h3 class="text-xl font-semibold mb-2 text-gray-100">Event-Driven AI Architecture</h3>
                                 <p class="text-gray-400 text-sm leading-relaxed">Build AI agents that react intelligently to real-time events from Kafka or other sources, enabling dynamic and responsive automation.</p>
-                            </div>
-                        </div>
-                         <div class="card-base glassmorphism-card p-6">
-                            <div class="card-content">
-                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-cogs"></i></div>
-                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Dynamic AI Tool Execution</h3>
-                                <p class="text-gray-400 text-sm leading-relaxed">Invoke any registered AI agent's specific tool directly via a generic API endpoint, providing flexibility for targeted actions.</p>
-                            </div>
-                        </div>
-                        <div class="card-base glassmorphism-card p-6">
-                            <div class="card-content">
-                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-comments"></i></div>
-                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Stateful AI Chat Agents</h3>
-                                <p class="text-gray-400 text-sm leading-relaxed">Easily create and deploy conversational AI agents that maintain context and history, powered by LLMs and your agent ecosystem.</p>
                             </div>
                         </div>
                     </div>
@@ -527,7 +557,7 @@
     </footer>
 
     <script>
-        // --- Orchestration Concepts Data (from orchestration_concepts_json_v1) ---
+        // --- Orchestration Concepts Data ---
         const orchestrationConcepts = [
           {
             "id": "quantumEntanglement",
@@ -538,18 +568,6 @@
               "type": "quantumEntanglement",
               "trigger": "State change in an observed agent or critical external event.",
               "keyConcepts": ["Observation", "State Collapse", "Visual Entanglement Mapping", "Cascading Effects"],
-              "agentsInvolved": [
-                {"name": "SensorAgent", "role": "Monitors specific conditions or data streams."},
-                {"name": "DecisionAgent", "role": "Changes state based on SensorAgent's input."},
-                {"name": "ReactiveAgent", "role": "Activated based on DecisionAgent's state via entanglement rules."},
-                {"name": "ActionAgent", "role": "Performs tasks triggered by ReactiveAgents."}
-              ],
-              "simplifiedSteps": [
-                "SensorAgent detects a market shift.",
-                "DecisionAgent's state collapses to 'HighVolatility'.",
-                "Entanglement map (visually defined by user) triggers ReactiveAgent (e.g., 'RiskAssessorAgent').",
-                "RiskAssessorAgent observes further, potentially triggering an ActionAgent (e.g., 'PortfolioAdjusterAgent')."
-              ],
               "noCodeEmphasis": "Visually define entanglement maps, agent states, and trigger conditions on the no-code canvas. No complex physics, just powerful conditional logic."
             },
             "icon": "fas fa-atom"
@@ -563,24 +581,6 @@
               "type": "reactLoop",
               "trigger": "User-defined complex goal or query.",
               "keyConcepts": ["Goal Decomposition", "LLM Planning", "Tool Selection", "Team Collaboration", "Iterative Refinement"],
-              "agentsInvolved": [
-                {"name": "PlannerAgent (LLM)", "role": "Reasons, plans next action, selects agent/tool."},
-                {"name": "ToolExpertAgent_A", "role": "Specialized in a specific domain (e.g., Data Analysis)."},
-                {"name": "ToolExpertAgent_B", "role": "Specialized in another domain (e.g., Communication)."},
-                {"name": "KnowledgeBrokerAgent", "role": "Provides access to specific knowledge bases."}
-              ],
-              "simplifiedSteps": [
-                "User Goal: 'Summarize recent sales data and email report to management.'",
-                "PlannerAgent: Thinks -> 'Need to fetch sales data first.' Selects DataAnalysisAgent.",
-                "Action: DataAnalysisAgent's 'fetch_sales_data' tool is invoked.",
-                "Observation: Sales data is returned.",
-                "PlannerAgent: Thinks -> 'Now summarize.' Selects an LLM-based SummarizerAgent.",
-                "Action: SummarizerAgent's 'summarize_text' tool is invoked with sales data.",
-                "Observation: Summary is returned.",
-                "PlannerAgent: Thinks -> 'Now email.' Selects CommunicationAgent.",
-                "Action: CommunicationAgent's 'send_email' tool is invoked with summary and recipient list.",
-                "Observation: Email sent successfully. Goal achieved."
-              ],
               "noCodeEmphasis": "Drag-and-drop to assemble agent teams. Configure the PlannerAgent's access to agents and tools visually. Define goals in natural language."
             },
             "icon": "fas fa-robot"
@@ -594,20 +594,9 @@
               "type": "multiAgentSimulation",
               "trigger": "User-defined simulation parameters and initial conditions.",
               "keyConcepts": ["Agent-Based Modeling", "Emergent Behavior", "Parameter Tuning", "Visualization"],
-              "agentsInvolved": [
-                {"name": "EntityAgent", "role": "Represents an individual actor/body with defined rules of interaction."},
-                {"name": "EnvironmentAgent", "role": "Manages the simulation space and global rules."},
-                {"name": "ObserverAgent", "role": "Tracks and reports on the state of EntityAgents and the system."}
-              ],
-              "simplifiedSteps": [
-                "User defines 'CelestialBodyAgents' with initial positions/velocities (no-code).",
-                "User sets gravitational interaction rules via EnvironmentAgent's configuration.",
-                "Simulation starts: Agents update state based on forces from others.",
-                "ObserverAgent tracks trajectories. Visualization shows complex paths."
-              ],
               "noCodeEmphasis": "Visually configure agent properties, interaction rules, and simulation parameters. Observe emergent dynamics without coding physics engines."
             },
-            "icon": "fas fa-project-diagram" 
+            "icon": "fas fa-shapes" // Changed from project-diagram for variety
           },
           {
             "id": "maxwellsDemon",
@@ -618,18 +607,6 @@
               "type": "informationGating",
               "trigger": "Continuous stream of data/tasks or specific events.",
               "keyConcepts": ["Information Filtering", "Conditional Routing", "State-Based Control", "System Optimization"],
-              "agentsInvolved": [
-                {"name": "SourceAgent", "role": "Generates data or tasks."},
-                {"name": "DemonAgent (Gatekeeper)", "role": "Observes incoming data/tasks and decides routing."},
-                {"name": "TargetAgent_HighPriority", "role": "Processes high-priority/filtered data."},
-                {"name": "TargetAgent_LowPriority", "role": "Processes other data or acts as a sink."}
-              ],
-              "simplifiedSteps": [
-                "SourceAgent produces a stream of 'data packets'.",
-                "DemonAgent (no-code rules) inspects packet 'temperature' (priority/type).",
-                "If 'temperature' is high, routes to TargetAgent_HighPriority.",
-                "Else, routes to TargetAgent_LowPriority or discards."
-              ],
               "noCodeEmphasis": "Visually define the DemonAgent's filtering and routing logic. Connect Source and Target agents via the Demon on the canvas."
             },
             "icon": "fas fa-door-closed" 
@@ -643,18 +620,6 @@
                 "type": "graphWorkflow",
                 "trigger": "API call, Kafka message, or another agent's action.",
                 "keyConcepts": ["State Management", "Conditional Edges", "Agent Nodes", "Visual Graph Definition"],
-                "agentsInvolved": [
-                    {"name": "DataIngestionAgent", "role": "Collects initial data."},
-                    {"name": "ProcessingAgent", "role": "Transforms or analyzes data."},
-                    {"name": "DecisionAgent", "role": "Makes a choice based on processed data."},
-                    {"name": "NotificationAgent", "role": "Communicates results."}
-                ],
-                "simplifiedSteps": [
-                    "Workflow starts with DataIngestionAgent.",
-                    "Output flows to ProcessingAgent.",
-                    "DecisionAgent evaluates ProcessingAgent's output.",
-                    "Conditional routing to different NotificationAgents."
-                ],
                 "noCodeEmphasis": "Drag-and-drop agent nodes, define connections and conditional logic visually. Monitor workflow state in real-time."
             },
             "icon": "fas fa-stream"
@@ -668,16 +633,6 @@
                 "type": "eventDriven",
                 "trigger": "External events (Kafka messages, API calls, sensor data).",
                 "keyConcepts": ["Event Consumption", "Event Filtering", "Payload Mapping", "Asynchronous Processing"],
-                "agentsInvolved": [
-                    {"name": "EventRouter (Platform)", "role": "Listens, filters, and routes events."},
-                    {"name": "SpecializedEventHandlerAgent_A", "role": "Handles specific event types."},
-                    {"name": "SpecializedEventHandlerAgent_B", "role": "Handles other event types."}
-                ],
-                "simplifiedSteps": [
-                    "Kafka message arrives on 'user_activity_topic'.",
-                    "EventRouter consumes and filters message.",
-                    "Rule routes to SecurityAlertAgent or OrderFulfillmentAgent based on 'activity_type'."
-                ],
                 "noCodeEmphasis": "Visually configure event sources, filtering rules, and data mappings to agent inputs. Define agent responses to specific events."
             },
             "icon": "fas fa-bolt"
@@ -749,46 +704,36 @@
 
             const concept = orchestrationConcepts[currentConceptIndex];
             
-            // Add fade-out class, then update content after a short delay, then fade-in
             dynamicContentDiv.classList.add('fade-out');
 
             setTimeout(() => {
                 let keyConceptsHTML = '';
                 if (concept.flow && concept.flow.keyConcepts && concept.flow.keyConcepts.length > 0) {
                     keyConceptsHTML = `<ul class="text-xs text-gray-400 list-disc list-inside mb-2 text-left max-w-md mx-auto">`;
-                    concept.flow.keyConcepts.slice(0, 3).forEach(kc => { // Show max 3 key concepts
+                    concept.flow.keyConcepts.slice(0, 3).forEach(kc => { 
                         keyConceptsHTML += `<li>${kc}</li>`;
                     });
                     keyConceptsHTML += `</ul>`;
-                } else if (concept.flow && concept.flow.simplifiedSteps && concept.flow.simplifiedSteps.length > 0) {
-                     keyConceptsHTML = `<ul class="text-xs text-gray-400 list-disc list-inside mb-2 text-left max-w-md mx-auto">`;
-                    concept.flow.simplifiedSteps.slice(0, 2).forEach(step => { // Show max 2 simplified steps
-                        keyConceptsHTML += `<li>${step}</li>`;
-                    });
-                    keyConceptsHTML += `</ul>`;
                 }
-
-
+                
                 dynamicContentDiv.innerHTML = `
                     <div class="icon"><i class="${concept.icon}"></i></div>
                     <h3>${concept.title}</h3>
                     <p class="tagline">${concept.tagline}</p>
-                    <p class="description-preview">${concept.description.substring(0, 120)}...</p>
+                    <p class="description-preview">${concept.description.substring(0, 150)}...</p>
                     ${keyConceptsHTML}
                     <p class="no-code-emphasis">${concept.flow.noCodeEmphasis}</p>
                 `;
                 dynamicContentDiv.classList.remove('fade-out');
                 dynamicContentDiv.classList.add('fade-in');
-            }, 700); // Corresponds to transition duration
+            }, 700); 
 
             currentConceptIndex = (currentConceptIndex + 1) % orchestrationConcepts.length;
         }
 
         if (dynamicContentDiv) {
-            // Initial display
-            dynamicContentDiv.classList.add('fade-in'); // Start with fade-in for the first item
+            dynamicContentDiv.classList.add('fade-in'); 
             updateConceptDisplay(); 
-            // Cycle through concepts every 7 seconds (adjust as needed)
             setInterval(updateConceptDisplay, 7000); 
         }
 
