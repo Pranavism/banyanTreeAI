@@ -8,14 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        html, body {
+            height: 100%; /* Helps with footer positioning if content is very short */
+            overflow-x: hidden; 
+        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* Dark Gray-900 */
             color: #d1d5db; /* Gray-300 for primary text */
             position: relative;
-            min-height: 100vh;
-            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
         }
+        /* Subtle Banyan Tree Silhouette Background for Dark Mode */
         body::before {
             content: "";
             position: fixed; 
@@ -23,14 +28,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3Cfilter id='blurFilter' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M480 950 V 600 Q 480 580 500 580 Q 520 580 520 600 V 950 Z' fill='%2305080f'/%3E%3Cellipse cx='500' cy='450' rx='350' ry='200' fill='%2305080f'/%3E%3Cellipse cx='500' cy='350' rx='300' ry='150' fill='%2305080f'/%3E%3Cellipse cx='500' cy='280' rx='250' ry='120' fill='%2305080f'/%3E%3Cpath d='M300 450 Q 320 600 330 750 L 340 750 Q 330 600 310 450 Z' fill='%2305080f'/%3E%3Cpath d='M700 450 Q 680 600 670 750 L 660 750 Q 670 600 690 450 Z' fill='%2305080f'/%3E%3Cpath d='M400 400 Q 410 550 420 700 L 430 700 Q 420 550 410 400 Z' fill='%2305080f'/%3E%3Cpath d='M600 400 Q 590 550 580 700 L 570 700 Q 580 550 590 400 Z' fill='%2305080f'/%3E%3C/svg%3E");
+            /* Updated fill and opacity for better visibility */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3Cfilter id='blurFilter' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='3'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M480 950 V 600 Q 480 580 500 580 Q 520 580 520 600 V 950 Z' fill='%231a202c'/%3E%3Cellipse cx='500' cy='450' rx='350' ry='200' fill='%231a202c'/%3E%3Cellipse cx='500' cy='350' rx='300' ry='150' fill='%231a202c'/%3E%3Cellipse cx='500' cy='280' rx='250' ry='120' fill='%231a202c'/%3E%3Cpath d='M300 450 Q 320 600 330 750 L 340 750 Q 330 600 310 450 Z' fill='%231a202c'/%3E%3Cpath d='M700 450 Q 680 600 670 750 L 660 750 Q 670 600 690 450 Z' fill='%231a202c'/%3E%3Cpath d='M400 400 Q 410 550 420 700 L 430 700 Q 420 550 410 400 Z' fill='%231a202c'/%3E%3Cpath d='M600 400 Q 590 550 580 700 L 570 700 Q 580 550 590 400 Z' fill='%231a202c'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center bottom; 
             background-size: cover; 
-            opacity: 0.1; 
+            opacity: 0.15; /* Increased opacity */
             z-index: -1; 
-            filter: blur(3px); 
+            filter: blur(2px); /* Slightly reduced blur */
         }
+
         .hero-bg {
             background: linear-gradient(135deg, #10B981 0%, #4F46E5 70%, #3730A3 100%); 
             color: #f0fdf4; 
@@ -168,12 +175,15 @@
         .dev-hub-card-icon {
             color: #34d399; 
         }
-        .card-tagline { /* Style for taglines in cards */
+        .card-tagline { 
             font-size: 0.8rem;
             font-style: italic;
-            color: #6ee7b7; /* Brighter green for taglines */
+            color: #6ee7b7; 
             margin-top: -0.25rem;
             margin-bottom: 0.75rem;
+        }
+        .main-content-wrapper { /* Ensures content pushes footer down */
+            flex-grow: 1;
         }
     </style>
 </head>
@@ -238,19 +248,22 @@
         </div>
     </header>
 
-    <div class="relative z-10">
-        <main class="container mx-auto px-6 py-16 space-y-24">
+    <div class="relative z-10 main-content-wrapper"> <main class="container mx-auto px-6 py-16 space-y-24">
 
             <section id="vision" class="text-center">
                 <i class="fas fa-seedling fa-3x banyan-leaf-color mb-6"></i>
                 <h2 class="text-3xl lg:text-4xl font-bold section-title mb-6">Our Vision: The AI-Native Future</h2>
                 <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                    At BanyanTree AI, we see a future where intelligent agents seamlessly collaborate to solve humanity's grand challenges. Our no-code platform is the seed, enabling anyone to cultivate vast, interconnected agent ecosystems—as resilient and adaptive as a banyan tree—to drive unprecedented innovation.
+                    At BanyanTree AI, we see a future where intelligent agents seamlessly collaborate to solve humanity's grand challenges. Our no-code platform is the seed, enabling anyone to cultivate vast, interconnected agent ecosystems—as resilient and adaptive as a banyan tree—to drive unprecedented innovation. 
+                    Think of BanyanTree AI as the <strong class="text-green-400">operating system for your agentic initiatives</strong>—providing the core services, tools, and orchestration capabilities to build everything from specialized single agents to sophisticated multi-agent collectives.
                 </p>
             </section>
 
             <section id="features">
-                <h2 class="text-3xl lg:text-4xl font-bold section-title mb-12 text-center">Core Platform Pillars</h2>
+                <h2 class="text-3xl lg:text-4xl font-bold section-title mb-6 text-center">Core Platform Pillars</h2>
+                <p class="text-center text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                    BanyanTree AI provides a comprehensive <strong class="text-green-400">AI Operating System</strong> that supports the full lifecycle of agentic AI development. Our modular architecture allows you to start small, with individual tools and agents, and scale to complex orchestrations involving multiple agents and advanced coordination patterns. Build with confidence, knowing you have a robust foundation.
+                </p>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="card-base glassmorphism-card p-6 text-center">
                         <div class="card-content">
@@ -262,36 +275,36 @@
                     <div class="card-base glassmorphism-card p-6 text-center">
                          <div class="card-content">
                             <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-sitemap"></i></div>
-                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Agent Registry & Discovery</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Centralized registry for managing agents and their capabilities. Enables universal discoverability for seamless inter-agent communication.</p>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Agent Registry</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">A centralized hub for defining, versioning, and managing all your AI agents and their capabilities (tools, schemas).</p>
                         </div>
                     </div>
                     <div class="card-base glassmorphism-card p-6 text-center">
                         <div class="card-content">
+                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-search-location"></i></div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Universal Agent Discoverability</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Agents can dynamically find and interact with other registered agents, fostering a collaborative and extensible ecosystem.</p>
+                        </div>
+                    </div>
+                     <div class="card-base glassmorphism-card p-6 text-center">
+                        <div class="card-content">
                             <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-link"></i></div>
-                            <h3 class="text-xl font-semibold mb-3 text-gray-100">A2A Communication Protocol</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Standardized Agent-to-Agent (A2A) protocol ensures reliable and structured communication across your entire agent ecosystem.</p>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Standardized A2A Protocol</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Ensures reliable, structured Agent-to-Agent communication, forming the backbone of complex orchestrations.</p>
                         </div>
                     </div>
                      <div class="card-base glassmorphism-card p-6 text-center">
                         <div class="card-content">
                             <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-puzzle-piece"></i></div>
                             <h3 class="text-xl font-semibold mb-3 text-gray-100">Modular & Extensible AI</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Easily integrate existing services (APIs, LLMs) or define new agent capabilities to extend the platform's power and adapt to any AI challenge.</p>
-                        </div>
-                    </div>
-                     <div class="card-base glassmorphism-card p-6 text-center">
-                        <div class="card-content">
-                            <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-shield-alt"></i></div>
-                            <h3 class="text-xl font-semibold mb-3 text-gray-100">Secure & Scalable</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Built with security and scalability at its core, ensuring your agentic systems are robust, reliable, and ready for enterprise demands.</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">Easily integrate existing services (APIs, LLMs) or define new agent capabilities to extend the platform's power.</p>
                         </div>
                     </div>
                      <div class="card-base glassmorphism-card p-6 text-center">
                         <div class="card-content">
                             <div class="text-5xl banyan-leaf-color mb-5"><i class="fas fa-tachometer-alt"></i></div>
                             <h3 class="text-xl font-semibold mb-3 text-gray-100">Monitoring & Analytics</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Gain insights into your agent operations with built-in monitoring, logging, and analytics tools to optimize performance and behavior.</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">Gain insights into your agent operations with built-in monitoring, logging, and analytics tools to optimize performance.</p>
                         </div>
                     </div>
                 </div>
@@ -305,6 +318,7 @@
                             <div class="card-content">
                                 <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-project-diagram"></i></div>
                                 <h3 class="text-xl font-semibold mb-2 text-gray-100">Declarative AI Workflows</h3>
+                                <p class="card-tagline">"Intelligent Process Automation"</p>
                                 <p class="text-gray-400 text-sm leading-relaxed">Visually define complex, stateful AI agent interactions and conditional logic. Ideal for structured processes and intelligent decision trees.</p>
                             </div>
                         </div>
@@ -312,6 +326,7 @@
                             <div class="card-content">
                                 <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-robot"></i></div>
                                 <h3 class="text-xl font-semibold mb-2 text-gray-100">ReAct with AI Agent Teams</h3>
+                                <p class="card-tagline">"Collaborative Problem Solving"</p>
                                 <p class="text-gray-400 text-sm leading-relaxed">Empower an LLM planner to reason and act by dynamically selecting AI agents and tools from predefined teams to achieve complex goals.</p>
                             </div>
                         </div>
@@ -325,7 +340,8 @@
                         </div>
                         <div class="card-base glassmorphism-card p-6">
                             <div class="card-content">
-                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-shapes"></i></div> <h3 class="text-xl font-semibold mb-2 text-gray-100">Three Body Problem Orchestrator</h3>
+                                <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-shapes"></i></div> 
+                                <h3 class="text-xl font-semibold mb-2 text-gray-100">Three Body Problem Orchestrator</h3>
                                 <p class="card-tagline">"Chaos-Aware Modelling"</p>
                                 <p class="text-gray-400 text-sm leading-relaxed">Design and simulate agent interactions inspired by n-body physics, allowing for the exploration of emergent behaviors in complex, dynamic systems.</p>
                             </div>
@@ -342,6 +358,7 @@
                             <div class="card-content">
                                 <div class="text-4xl banyan-leaf-color mb-4"><i class="fas fa-bolt"></i></div>
                                 <h3 class="text-xl font-semibold mb-2 text-gray-100">Event-Driven AI Architecture</h3>
+                                <p class="card-tagline">"Real-Time Adaptive Response"</p>
                                 <p class="text-gray-400 text-sm leading-relaxed">Build AI agents that react intelligently to real-time events from Kafka or other sources, enabling dynamic and responsive automation.</p>
                             </div>
                         </div>
@@ -596,7 +613,7 @@
               "keyConcepts": ["Agent-Based Modeling", "Emergent Behavior", "Parameter Tuning", "Visualization"],
               "noCodeEmphasis": "Visually configure agent properties, interaction rules, and simulation parameters. Observe emergent dynamics without coding physics engines."
             },
-            "icon": "fas fa-shapes" // Changed from project-diagram for variety
+            "icon": "fas fa-shapes" 
           },
           {
             "id": "maxwellsDemon",
